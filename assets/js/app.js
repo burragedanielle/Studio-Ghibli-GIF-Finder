@@ -55,12 +55,37 @@ function movieButtonMaker() {
 };
 
 
-//When the user presses a movie button
+
+//When the user presses a movie button 
+//****Dev Note: I struggled to identify a way to push the values of each name into my object movieList. I tried to make a work around. I can get button to append to page but I can't get the APIs to connect to it now. 
 
 $(document).ready(function () {
 
     //make a button for each movie
     movieButtonMaker();
+
+    $('#user-input-submit').on('click', function(){
+
+        var userInputArray = {};
+
+        var movieName = $('#inputGroupSelect04').val();
+        var movieId; 
+        console.log(movieName);
+        if (movieName === "From Up On Poppy Hill"){
+            movieId = "tt1798188"; 
+        } else if (movieName === "The Cat Returns"){
+            movieId = 'tt0347618';
+        } else if(movieName === "The Wind Rises"){
+            movieId = 'tt2013293';
+        }
+
+        var userInputMovieButton = $('<button>' + movieName + '</button>');
+        userInputMovieButton.attr('data-movie', movieName);
+        userInputMovieButton.attr('data-movie-id', movieId);
+        userInputMovieButton.addClass('movie-button btn btn-white btn-fill btn-lg');
+        $('#buttons-here').append(userInputMovieButton);
+
+      })
 
     //Make buttons clickable that pulls an API call
 
@@ -89,15 +114,26 @@ $(document).ready(function () {
             console.log(response);
             //Write a Still Image to The Page
             for (var i = 0; i < response.data.length; i++) {
-                console.log("I'm trying to work");
                 var ghilbiGif = $('<img>');
+
+                //append image to screen
                 ghilbiGif.addClass('movie-gif');
                 ghilbiGif.attr('src', response.data[i].images.fixed_height_still.url);
                 ghilbiGif.attr('data-still', response.data[i].images.fixed_height_still.url);
                 ghilbiGif.attr('data-animate', response.data[i].images.fixed_height.url);
                 ghilbiGif.attr('data-state', 'still');
                 ghilbiGif.attr('alt', 'testing image');
+
                 $('#gifs-here').append(ghilbiGif);
+                
+                //append a rating for each image
+                var ghilbiGifRating = $('<p> GIF Rating: ' + response.data[i].rating + '</p>');
+                ghilbiGifRating.attr('rating', response.data[i].rating);
+                ghilbiGifRating.addClass('small-text');
+
+                console.log(ghilbiGifRating);
+                $('#gifs-here').append(ghilbiGifRating);
+                
             }
         });
 
@@ -138,3 +174,4 @@ $(document).ready(function () {
         }
       });
 });
+

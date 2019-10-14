@@ -208,6 +208,12 @@ button::-moz-focus-inner {
   outline: 0;
 }
 
+.input-group {
+  text-align: center;
+  margin: 0 auto;
+  color: #777777;
+}
+
 /*           Animations              */
 
 *::selection {
