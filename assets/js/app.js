@@ -98,6 +98,8 @@ $(document).ready(function () {
 
         //make a URL for each movie for OMBD
 
+        //** DEV NOTE: must run on Google Chrome as Not Secure because OMBD API is not a secure link
+
         var omdbURL = 'http://www.omdbapi.com/?i=' + movieId + '&plot=short&apikey=8c0c7a4f';
         console.log(omdbURL);
 
