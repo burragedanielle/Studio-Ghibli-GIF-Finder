@@ -1,4 +1,4 @@
-# Studio Ghilbi GIF Finder
+# Studio Ghibli GIF Finder
 
 Find GIFS from your favorite Studio Ghibli movies in seconds with the Studio Ghibli GIF Finder. 
 
